@@ -1,8 +1,8 @@
 import "./App.css";
-import MyNav from "./MyNav.jsx";
-import MyFooter from "./MyFooter.jsx";
-import Welcome from "./Welcome.jsx";
-import AllTheBooks from "./AllTheBooks.jsx";
+import MyNav from "./Components/MyNav.jsx";
+import MyFooter from "./Components/MyFooter.jsx";
+import Welcome from "./Components/Welcome.jsx";
+import AllTheBooks from "./Components/AllTheBooks.jsx";
 
 
 
