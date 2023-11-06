@@ -1,0 +1,16 @@
+D6
+
+- creare sezione esterna per commenti
+- click su card, viene creato un oggetto con prodotto e asin
+    - funzionamento: al click sulla card viene aggiornato un useState a livello superiore con i dati della card
+- Se non lo hai fatto, cambia il modo in cui viene salvato "selected".
+- Non deve essere piu  salavato in SingleBook, ma in Latest Release, e non deve piu contenere un booleano, ma l'asin del libro su cui si è cliccato.
+ - Per farlo, implementa lo state lifting e modifica SingleBook di conseguenza
+ - Passa il valore di "selected" si a SingleBook che a CommentArea
+ Quando cambia il valore di "selected", CommentArea area deve eseguire una nuova fetch con il nuovo valore di selected e le recensioni nella colonna di destra devono riflettere il libro selezionato nella colonna di sinistra
+ -Utilizza component DidUpdate e non dimenticart idi sfruttare le sue prop per non imbatterti in un loop infinito
+ - Assicurati che l'asin del libro (nella prop selected) arrivi anche a AddComment in modo da mantenere aggiornata la sua proprietà elementId (necessaria per la richiesta POST del libro attualmente selezionato)
+
+ D7
+
+ 
