@@ -1,55 +1,33 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Form, } from "react-bootstrap";
+import React, { useContext, useState, useEffect } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import SingleBook from "./SingleBook";
-import history from "../history.json";
+import history from "../Data/history.json";
+import FilterContext from "../Context/filter";
 
 function AllTheBooks() {
-  const [filter, setFilter] = useState("");
   const [filteredTitles, setFilteredTitles] = useState([]);
+  const { filter } = useContext(FilterContext);
+  const booksToShow = history;
 
-
-  const booksToShow = history
-
-  const handleFilterChange = (event) => {
-    const inputValue = event.target.value;
-    setFilter(inputValue);
-
+  useEffect(() => {
     const filteredBookTitles = booksToShow.filter((book) =>
-      book.title.toLowerCase().includes(inputValue.toLowerCase())
+      book.title.toLowerCase().includes(filter.toLowerCase())
     );
-
     setFilteredTitles(filteredBookTitles);
-  };
+  }, [booksToShow, filter]);
 
   return (
     <>
-
-
       <Container>
-        <Row className="justify-content-center mt-4 my-5">
-          <Col xs={12} md={6} lg={3}>
-            <Form>
-              <Form.Group className="text-center" controlId="filterForm">
-                <Form.Label className="text-center">Filter Books</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter a filter keyword"
-                  className="text-center"
-                  value={filter}
-                  onChange={handleFilterChange}
-                />
-              </Form.Group>
-            </Form>
-          </Col>
-        </Row>
-
         <Row>
           {filteredTitles.length > 0 &&
             filteredTitles.map((book) => (
               <SingleBook key={book.asin} book={book} />
             ))}
           {filteredTitles.length === 0 &&
-            booksToShow.map((book) => <SingleBook key={book.asin} book={book} />)}
+            booksToShow.map((book) => (
+              <SingleBook key={book.asin} book={book} />
+            ))}
         </Row>
       </Container>
     </>
@@ -57,3 +35,4 @@ function AllTheBooks() {
 }
 
 export default AllTheBooks;
+
