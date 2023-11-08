@@ -4,7 +4,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { useContext } from "react";
 import selectedBookContext from "../Context/selectedBook.js";
 import Loading from "./Loading.jsx";
-import bearer from "../Bearer.js";
+import {bearer,getMethod} from "../Bearer.js";
 
 function CommentArea2() {
   const { selectedBook } = useContext(selectedBookContext);
@@ -15,12 +15,7 @@ function CommentArea2() {
     setLoading(true);
     fetch(
       `https://striveschool-api.herokuapp.com/api/comments/${selectedBook}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: bearer,
-        },
-      }
+      getMethod
     )
       .then((r) => r.json())
       .then((data) => setComments(data))

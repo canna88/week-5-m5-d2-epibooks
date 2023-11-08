@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import bearer from "../Bearer";
+import {bearer, getMethod, putMethod} from "../Bearer";
 
 function Update({ commentId }) {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false);
@@ -18,14 +18,7 @@ function Update({ commentId }) {
   const updateConfirmation = () => {
     setIsUpdating(true);
 
-    fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
-      method: "PUT",
-      headers: {
-        Authorization: bearer,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ comment: newComment, rate: newRate }),
-    })
+    fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, putMethod)
       .then((response) => {
         if (response.ok) {
           setUpdateOpen(false); // Cambia lo stato del form dopo un aggiornamento riuscito
@@ -43,13 +36,7 @@ function Update({ commentId }) {
       setIsLoadingUpdate(true);
       fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${commentId}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM3ZmIwYTc3Y2RhYTAwMTQ2ZGYzODMiLCJpYXQiOjE2OTgxNjc1NjIsImV4cCI6MTY5OTM3NzE2Mn0.c1a_v_-jtk5AO1RmpBerwNPt3UTg6A3Zvyvkhe_-Rm8",
-          },
-        }
+        getMethod
       )
         .then((response) => response.json())
         .then((data) => {

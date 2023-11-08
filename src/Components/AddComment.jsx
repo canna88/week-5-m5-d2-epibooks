@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import bearer from "../Bearer";
+import {bearer,postMethod} from "../Bearer";
 
 function AddComment({ asin }) {
   const [addOpen, setAddOpen] = useState(false);
@@ -25,14 +25,7 @@ function AddComment({ asin }) {
       elementId: asin,
     };
 
-    fetch(`https://striveschool-api.herokuapp.com/api/comments`, {
-      method: "POST",
-      headers: {
-        Authorization: bearer,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newComment),
-    })
+    fetch(`https://striveschool-api.herokuapp.com/api/comments`, postMethod)
       .then((response) => {
         if (response.ok) {
           setAddOpen(false); // Chiude il form dopo un aggiornamento riuscito
