@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
+import bearer from "../Bearer";
 
 function AddComment({ asin }) {
   const [addOpen, setAddOpen] = useState(false);
@@ -27,8 +28,7 @@ function AddComment({ asin }) {
     fetch(`https://striveschool-api.herokuapp.com/api/comments`, {
       method: "POST",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM3ZmIwYTc3Y2RhYTAwMTQ2ZGYzODMiLCJpYXQiOjE2OTgxNjc1NjIsImV4cCI6MTY5OTM3NzE2Mn0.c1a_v_-jtk5AO1RmpBerwNPt3UTg6A3Zvyvkhe_-Rm8",
+        Authorization: bearer,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newComment),
@@ -36,7 +36,7 @@ function AddComment({ asin }) {
       .then((response) => {
         if (response.ok) {
           setAddOpen(false); // Chiude il form dopo un aggiornamento riuscito
-          alert("Commento aggiunto con successo")
+          alert("Commento aggiunto con successo");
         } else {
           throw new Error("Errore nella richiesta");
         }
@@ -51,9 +51,8 @@ function AddComment({ asin }) {
 
   return (
     <>
-                <Button variant="dark" onClick={opendAdd}>
+      <Button variant="dark" onClick={opendAdd}>
         Add
-        
       </Button>
       {addOpen && (
         <div>
@@ -97,4 +96,3 @@ function AddComment({ asin }) {
 }
 
 export default AddComment;
-

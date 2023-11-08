@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button } from "react-bootstrap";
 import CommentList from "./CommentList.jsx";
 import Loading from "./Loading.jsx";
 import AddComment from "./AddComment.jsx";
+import bearer from "../Bearer.js";
+
 
 
 function CommentArea({ asin, select }) {
@@ -24,7 +26,7 @@ function CommentArea({ asin, select }) {
         method: "GET",
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM3ZmIwYTc3Y2RhYTAwMTQ2ZGYzODMiLCJpYXQiOjE2OTgxNjc1NjIsImV4cCI6MTY5OTM3NzE2Mn0.c1a_v_-jtk5AO1RmpBerwNPt3UTg6A3Zvyvkhe_-Rm8",
+          bearer,
         },
       })
         .then((response) => response.json())
@@ -54,8 +56,7 @@ function CommentArea({ asin, select }) {
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`, {
       method: "GET",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM3ZmIwYTc3Y2RhYTAwMTQ2ZGYzODMiLCJpYXQiOjE2OTgxNjc1NjIsImV4cCI6MTY5OTM3NzE2Mn0.c1a_v_-jtk5AO1RmpBerwNPt3UTg6A3Zvyvkhe_-Rm8",
+        Authorization:bearer,
       },
     })
       .then((response) => response.json())

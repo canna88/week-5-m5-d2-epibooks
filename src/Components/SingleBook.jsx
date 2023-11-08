@@ -2,21 +2,19 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import { Col, Button } from "react-bootstrap";
 import CommentArea from "./CommentArea";
+import selectedBookContext from "../Context/selectedBook.js";
+import { useContext } from "react";
 
 function SingleBook({ book }) {
-  const [selected, setSelected] = useState(false);
+  const { selectedBook, setSelectedBook } = useContext(selectedBookContext);
+  const isSelected = selectedBook === book.asin;
 
-  const cardStyle = {
-    borderColor: selected ? "red" : "",
-    cursor: "pointer",
-  };
-
-  const handleCardClick = () => {
-    setSelected(!selected); // Inverti lo stato di 'selected' al click sulla card
+  const handleCardClick = (asin) => {
+    setSelectedBook(asin);
   };
 
   const closeComments = () => {
-    setSelected(false);
+    setSelectedBook(null);
   };
 
   return (
@@ -24,30 +22,27 @@ function SingleBook({ book }) {
       <Card
         className="my-5"
         key={book.asin}
-        style={{ width: "18rem", ...cardStyle }}
+        style={{
+          cursor: "pointer",
+          border: isSelected ? "2px solid red" : "none",
+          width: "18rem",
+        }}
+        onClick={() => handleCardClick(book.asin)}
       >
-        <div onClick={handleCardClick}>
-          <Card.Img
-            variant="top"
-            src={book.img}
-            alt={book.title}
-            style={{ width: "20%" }}
-          />
-          <Card.Body>
-            <Card.Title>{book.title}</Card.Title>
-            <p>Asin: {book.asin}</p>
-            <p>Price: ${book.price}</p>
-            <p>Category: {book.category}</p>
-          </Card.Body>
-        </div>
+        <Card.Img variant="top" src={book.img} alt={book.title} style={{ width: "20%" }} />
+        <Card.Body>
+          <Card.Title>{book.title}</Card.Title>
+          <p>Asin: {book.asin}</p>
+          <p>Price: ${book.price}</p>
+          <p>Category: {book.category}</p>
+        </Card.Body>
         <div className="p-3">
-          {selected && (
+          {isSelected && (
             <Button variant="danger" onClick={closeComments}>
               Close
             </Button>
           )}
-          
-          {selected && <CommentArea asin={book.asin} select={selected} />}
+          {isSelected && <CommentArea asin={book.asin} select={isSelected} />}
         </div>
       </Card>
     </Col>
@@ -55,3 +50,4 @@ function SingleBook({ book }) {
 }
 
 export default SingleBook;
+

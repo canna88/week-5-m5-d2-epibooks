@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
+import bearer from "../Bearer";
 
 function DeleteComment({ commentId }) {
 
@@ -8,8 +9,7 @@ function DeleteComment({ commentId }) {
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
       method: "DELETE",
       headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM3ZmIwYTc3Y2RhYTAwMTQ2ZGYzODMiLCJpYXQiOjE2OTgxNjc1NjIsImV4cCI6MTY5OTM3NzE2Mn0.c1a_v_-jtk5AO1RmpBerwNPt3UTg6A3Zvyvkhe_-Rm8",
+        Authorization: bearer,
         "Content-Type": "application/json",
       }
     })
