@@ -7,6 +7,7 @@ import selectedBookContext from "../Context/selectedBook.js";
 import AddComment from "./AddComment.jsx";
 import Update from "./Update.jsx";
 import crudOperatorContext from "../Context/crudOperator.js";
+import DeleteComment from "./DeleteComment.jsx";
 
 function CommentArea2() {
   const { selectedBook } = useContext(selectedBookContext);
@@ -68,6 +69,8 @@ function CommentArea2() {
                       {comment.rate}
                     </p>
                     <Update commentId={comment._id}></Update>
+                    <DeleteComment commentId={comment._id}></DeleteComment>
+
                   </li>
                 ))}
               </ul>

@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
 import { deleteMethod} from "../Bearer";
+import crudOperatorContext from "../Context/crudOperator.js";
+
 
 function DeleteComment({ commentId }) {
+  const { crudOperator, setCrudOperator } = useContext(crudOperatorContext);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const deleteComment = () => {
+    setIsDeleting(true)
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, deleteMethod)
       .then((response) => {
         if (response.ok) {
@@ -16,15 +21,19 @@ function DeleteComment({ commentId }) {
       })
       .catch((error) => {
         console.error("Errore nell'aggiornamento del commento", error);
+      })
+      .finally(() => {
+        crudOperator ? setCrudOperator(false) : setCrudOperator(true)
       });
   };
 
   return (
     <>
+    
       <Button variant="danger" onClick={deleteComment}>
         Delete
       </Button>
-      
+      {isDeleting && <Loading />}
     </>
   );
 }
