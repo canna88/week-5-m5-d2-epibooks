@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import {bearer, getMethod, putMethod} from "../Bearer";
+import { getMethod, putMethod} from "../Bearer";
 
 function Update({ commentId }) {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false);

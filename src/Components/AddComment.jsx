@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import {bearer,postMethod} from "../Bearer";
+import {postMethod} from "../Bearer";
 
 function AddComment({ asin }) {
   const [addOpen, setAddOpen] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import {bearer, deleteMethod} from "../Bearer";
+import { deleteMethod} from "../Bearer";
 
 function DeleteComment({ commentId }) {
 
