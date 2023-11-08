@@ -18,14 +18,17 @@ function SingleBook({ book }) {
   };
 
   return (
-    <Col className="p-3" xs={12} md={6} lg={3}>
+    <div className="p-2" style={{
+      width: "33%"
+    }}>
+
       <Card
         className="my-5"
         key={book.asin}
         style={{
           cursor: "pointer",
-          border: isSelected ? "2px solid red" : "none",
-          width: "18rem",
+          border: isSelected ? "3px solid red" : "2px solid black",
+
         }}
         onClick={() => handleCardClick(book.asin)}
       >
@@ -37,15 +40,15 @@ function SingleBook({ book }) {
           <p>Category: {book.category}</p>
         </Card.Body>
         <div className="p-3">
-          {isSelected && (
+          {/* {isSelected && (
             <Button variant="danger" onClick={closeComments}>
-              Close
+            Close
             </Button>
-          )}
-          {isSelected && <CommentArea asin={book.asin} select={isSelected} />}
+          )} */}
+          {/* {isSelected && <CommentArea asin={book.asin} select={isSelected} />} */}
         </div>
       </Card>
-    </Col>
+          </div>
   );
 }
 

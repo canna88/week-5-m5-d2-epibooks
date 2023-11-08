@@ -6,9 +6,8 @@ import fantasy from "../Data/fantasy.json";
 import horror from "../Data/horror.json";
 import romance from "../Data/romance.json";
 import scifi from "../Data/scifi.json";
-import CategoryContext from "../Context/category";
+import CategoryContext from "../Context/category.js";
 import selectedBookContext from "../Context/selectedBook.js";
-
 
 function CategoryList() {
   const { category, setCategory } = useContext(CategoryContext);
@@ -31,7 +30,7 @@ function CategoryList() {
       <Row>
         {categories.map((category, index) => (
           <Col key={index} className="mb-2">
-            <Button onClick={() => handleClickCategory(category.data)}>
+            <Button style={{width:"100%"}} onClick={() => handleClickCategory(category.data)}>
               {category.name}
             </Button>
           </Col>

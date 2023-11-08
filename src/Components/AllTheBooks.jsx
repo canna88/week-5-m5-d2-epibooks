@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import SingleBook from "./SingleBook";
-import FilterContext from "../Context/filter";
-import CategoryContext from "../Context/category";
+import FilterContext from "../Context/filter.js";
+import CategoryContext from "../Context/category.js";
 
 function AllTheBooks() {
   const [filteredTitles, setFilteredTitles] = useState([]);

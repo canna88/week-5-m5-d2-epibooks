@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import CommentList from "./CommentList.jsx";
 import Loading from "./Loading.jsx";
 import AddComment from "./AddComment.jsx";
-import bearer from "../Bearer.js";
+import {bearer} from "../Bearer.js";
 
 
 

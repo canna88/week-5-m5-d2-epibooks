@@ -5,22 +5,7 @@ const getMethod = {
     Authorization: bearer,
   },
 };
-const postMethod = {
-    method: "POST",
-    headers: {
-      Authorization: bearer,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newComment),
-  }
-  const putMethod = {
-    method: "PUT",
-    headers: {
-      Authorization: bearer,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ comment: newComment, rate: newRate }),
-  }
+
   const deleteMethod = {
     method: "DELETE",
     headers: {
@@ -30,5 +15,5 @@ const postMethod = {
   }
 
 
-export { bearer, getMethod,postMethod, putMethod, deleteMethod };
+export { bearer, getMethod, deleteMethod };
 

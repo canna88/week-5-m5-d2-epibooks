@@ -11,6 +11,10 @@ D6
  -Utilizza component DidUpdate e non dimenticart idi sfruttare le sue prop per non imbatterti in un loop infinito
  - Assicurati che l'asin del libro (nella prop selected) arrivi anche a AddComment in modo da mantenere aggiornata la sua proprietà elementId (necessaria per la richiesta POST del libro attualmente selezionato)
 
+
+-CREAZIONE NUOVO CONTEXT: al clic su una categoria o di una nuova card ripulisce la sezione commenti
+-ADD COMMENT: dopo aver aggiunto il commento deve rifare la  fetch
+-ADD COMMENT: dopo aver aggiunto il commento, deve chiudere il form
  D7
 
  
