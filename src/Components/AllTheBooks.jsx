@@ -26,7 +26,7 @@ function AllTheBooks() {
               <SingleBook key={book.asin} book={book} />
               ))}
           {filteredTitles.length === 0 &&
-            booksToShow.map((book) => (
+            filteredTitles.map((book) => (
               <SingleBook key={book.asin} book={book} />
               ))}
         </Row>
