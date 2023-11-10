@@ -36,7 +36,7 @@ function App() {
         <crudOperatorContext.Provider value={{ crudOperator, setCrudOperator }}>
           <CategoryContext.Provider value={{ category, setCategory }}>
             <FilterContext.Provider value={{ filter, setFilter }}>
-              <Routes>
+              {/* <Routes> */}
                 <MyNav />
                 {/* <Welcome />
                 <Route path = "/" element = {<CategoryList/>} />
@@ -57,7 +57,7 @@ function App() {
                 <CategoryList />
                 <Container>
                   <Row>
-                    <Col className="m-0" xs={8}>
+                    <Col  className="m-0" xs={8}>
                       <AllTheBooks />
                     </Col>
                     <Col className="m-0" xs={4}>
@@ -66,7 +66,7 @@ function App() {
                   </Row>
                 </Container>
                 <MyFooter />
-              </Routes>
+              {/* </Routes> */}
             </FilterContext.Provider>
           </CategoryContext.Provider>
         </crudOperatorContext.Provider>

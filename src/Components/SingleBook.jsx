@@ -18,14 +18,9 @@ function SingleBook({ book }) {
   };
 
   return (
-    <div
-      className="p-2"
-      style={{
-        width: "33%",
-      }}
-    >
+    <>
       <Card
-        className="my-5"
+        className="my-2"
         key={book.asin}
         style={{
           cursor: "pointer",
@@ -33,20 +28,16 @@ function SingleBook({ book }) {
         }}
         onClick={() => handleCardClick(book.asin)}
       >
-        <Card.Img
-          variant="top"
-          src={book.img}
-          alt={book.title}
-        />
+        <Card.Img variant="top" src={book.img} alt={book.title} />
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
           <p>Asin: {book.asin}</p>
           <p>Price: ${book.price}</p>
           <p>Category: {book.category}</p>
         </Card.Body>
-        <div className="p-3"></div>
       </Card>
-    </div>
+
+          </>
   );
 }
 

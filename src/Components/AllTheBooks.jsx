@@ -16,29 +16,23 @@ function AllTheBooks() {
   useEffect(() => {
     const filteredBookTitles = booksToShow.filter((book) =>
       book.title.toLowerCase().includes(filter.toLowerCase())
-      
     );
     setFilteredTitles(filteredBookTitles);
-    setSelectedBook("")
+    setSelectedBook("");
   }, [booksToShow, filter]);
 
   return (
     <>
-      <Container>
-        <Row>
-          {filteredTitles.length > 0 &&
-            filteredTitles.map((book) => (
-              <SingleBook key={book.asin} book={book} />
-              ))}
-          {filteredTitles.length === 0 &&
-            filteredTitles.map((book) => (
-              <SingleBook key={book.asin} book={book} />
-              ))}
-        </Row>
-      </Container>
+      <Row className="row-gap-1 mt-5">
+        {filteredTitles.map((book) => (
+          <Col key={book.asin} xs={12} md={6} lg={4} className="p-2 d-flex align-items-stretch flex-wrap">
+            <SingleBook book={book} />
+          </Col>
+        ))}
+      </Row>
     </>
   );
+  
 }
 
 export default AllTheBooks;
-
