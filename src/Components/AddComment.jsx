@@ -68,7 +68,7 @@ function AddComment({ asin }) {
     <>
       <div className="my-3">
         <Button variant="dark" onClick={opendAdd}>
-          Add comment
+          Click to review this book
         </Button>
 
         {addOpen && (
@@ -104,13 +104,13 @@ function AddComment({ asin }) {
               </Form.Group>
             </Form>
 
-            <div>
+            <div >
               <div>{isUpdating && <Loading />}</div>
-              <Button variant="success" onClick={submitAdd}>
+              <Button className="mx-2" variant="success" onClick={submitAdd}>
                 Add Comment
               </Button>
 
-              <Button variant="danger" onClick={discardAdd}>
+              <Button className="mx-2" variant="warning" onClick={discardAdd}>
                 Discard
               </Button>
             </div>

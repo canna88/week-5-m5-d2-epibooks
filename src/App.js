@@ -42,6 +42,7 @@ function App() {
             <CategoryContext.Provider value={{ category, setCategory }}>
               <FilterContext.Provider value={{ filter, setFilter }}>
                 <MyNav />
+                <div style ={{height:"100px"}}></div>
                 <Routes>
                   <Route
                     path="/"

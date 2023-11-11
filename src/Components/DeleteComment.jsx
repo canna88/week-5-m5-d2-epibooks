@@ -30,7 +30,7 @@ function DeleteComment({ commentId }) {
   return (
     <>
     
-      <Button variant="danger" onClick={deleteComment}>
+      <Button className="mx-2" variant="danger" onClick={deleteComment}>
         Delete
       </Button>
       {isDeleting && <Loading />}

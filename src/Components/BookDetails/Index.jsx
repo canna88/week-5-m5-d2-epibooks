@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Table } from "react-bootstrap";
 import Loading from "../Loading.jsx";
 import { getMethod } from "../../Bearer.js";
 import selectedBookContext from "../../Context/selectedBook.js";
@@ -55,57 +55,58 @@ function BookDetails() {
 
   return (
     <>
-    <Container>
-      <BookDetailsData img = {selectedBookData.img} title ={selectedBookData.title} category = {selectedBookData.category} price = {selectedBookData.price}/>
-      
+      <Container>
+        <BookDetailsData
+          img={selectedBookData.img}
+          title={selectedBookData.title}
+          category={selectedBookData.category}
+          price={selectedBookData.price}
+        />
       </Container>
-    <Container>
-
-      <Row>
-        <Col xs={12}>
-          <h3 className="mt-5">Comments:</h3>
-          {selectedBook && (
-            <div>
-              <AddComment asin={selectedBook} />
-              {loading && <Loading />}
-              {noComments && (
-                <div>
-                  <div>Non ci sono commenti da mostrare</div>
-                </div>
-              )}
-              {comments.length > 0 && (
-                <div>
-                  <ul>
-                    {comments.map((comment, index) => (
-                      <Row key={index}>
-                        <li className="mb-3">
-                          <Col>
-                            <p className="mb-0">
-                              <span style={{ fontWeight: "bold" }}>
-                                Comment:
-                              </span>{" "}
-                              {comment.comment}
-                            </p>
-                            <p className="mb-0">
-                              <span style={{ fontWeight: "bold" }}>Rate:</span>{" "}
-                              {comment.rate}
-                            </p>
-                            <Update commentId={comment._id} />
-                            <DeleteComment commentId={comment._id} />
-                          </Col>
-                        </li>
-                      </Row>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        <Row>
+          <Col xs={12}>
+            <h3 className="my-1">Comments:</h3>
+            {selectedBook && (
+              <div>
+                <AddComment asin={selectedBook} />
+                {loading && <Loading />}
+                {noComments && (
+                  <div>
+                    <div>Non ci sono commenti da mostrare</div>
+                  </div>
+                )}
+                {comments.length > 0 && (
+                  <div>
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th style={{ width: "60%" }}>Comment</th>
+                          <th style={{ width: "10%" }}>Rate</th>
+                          <th style={{ width: "30%" }}>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {comments.map((comment, index) => (
+                          <tr key={index}>
+                            <td>{comment.comment}</td>
+                            <td>{comment.rate}</td>
+                            <td>
+                              <Update commentId={comment._id} />
+                              <DeleteComment commentId={comment._id} />
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </div>
+                )}
+              </div>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </>
-
   );
 }
 

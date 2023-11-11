@@ -3,9 +3,10 @@ import { Col, Container, Row } from "react-bootstrap";
 function MyFooter() {
 
   const footerStyle = {
-    position: "fixed",
+    position: "relative",
     bottom: 0,
-    width: "100%"
+    width: "100%",
+    marginTop: "100px"
   }
 
   return (

@@ -77,7 +77,7 @@ function Update({ commentId }) {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setUpdateOpen(true)}>
+      <Button className="mx-2" variant="primary" onClick={() => setUpdateOpen(true)}>
         Change
       </Button>
 
@@ -118,13 +118,13 @@ function Update({ commentId }) {
             </Form.Group>
           </Form>
 
-          <div>
+          <div className="mb-4">
             {isUpdating && <Loading />}
-            <Button variant="success" onClick={updateConfirmation}>
+            <Button className="mx-2" variant="success" onClick={updateConfirmation}>
               Update Comment
             </Button>
 
-            <Button variant="danger" onClick={discardUpdate}>
+            <Button  className="mx-2"variant="warning" onClick={discardUpdate}>
               Discard
             </Button>
           </div>

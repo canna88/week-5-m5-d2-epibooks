@@ -13,14 +13,6 @@ function SingleBook({ book }) {
     setSelectedBook(asin);
   };
 
-  // const handleInfoClick = (asin) => {
-  //   setSelectedBook(asin);
-  // };
-
-  // const closeComments = () => {
-  //   setSelectedBook(null);
-  // };
-
   return (
     <>
       <Card
@@ -34,16 +26,24 @@ function SingleBook({ book }) {
       >
         <Card.Img variant="top" src={book.img} alt={book.title} />
         <Card.Body>
-          <Card.Title>{book.title}</Card.Title>
-          <p>Category: {book.category}</p>
-          <p>Price: € {book.price}</p>
+        <Card.Title style={{ fontSize: "1.2rem", fontWeight: "bold" }}>
+  {book.title}
+</Card.Title>
+
+          <Card.Text style={{ marginBottom: "1rem" }}>
+            <strong>Category:</strong> {book.category}
+          </Card.Text>
+          <Card.Text>
+            <strong>Price:</strong> € {book.price}
+          </Card.Text>
         </Card.Body>
         <Button
           as={Link}
           to={`/bookdetails/${book.asin}`}
           variant="outline-dark"
+          style={{ marginTop: "1rem" }}
         >
-          Book details
+          Book Details
         </Button>
       </Card>
     </>
@@ -51,3 +51,4 @@ function SingleBook({ book }) {
 }
 
 export default SingleBook;
+

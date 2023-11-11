@@ -6,7 +6,9 @@
 - [DONE] Scaricare l'ASIN tramite useParams.
 - [DONE] Sceglierlo tra i diversi 5 file JSON presenti.
 - [DONE] Presentare tutti i dati e l'immagine in maniera chiara.
-- [] Presentare i commenti già presenti in maniera chiara.
+- [DONE] Presentare i commenti già presenti in maniera chiara.
+- [DONE] Presentare la nav in maniera chiara.
+- [DONE] Presentare il footer in maniera chiara.
 
 # SCSS:
 - [ ] Installare il pacchetto.
@@ -17,6 +19,7 @@
 
 # Meno Importanti:
 - [ ] Inserire un filtro per ordinare i libri per nome, categoria e prezzo.
+- [ ] Sistemare l'input dele modifiche dei commenti.
 
 # Modifiche al Jumbotron:
 - [ ] **Modificare il Jumbotron**:

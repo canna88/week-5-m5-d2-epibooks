@@ -5,9 +5,12 @@ import Button from 'react-bootstrap/Button';
 
 
 function Welcome() {
+
   return (
 
-      <Container>
+
+
+      <Container  >
         <h1>Welcome to EpiBooks</h1>
         <p>
           Discover a world of books at EpiBooks. Explore our vast collection of literature, fiction, and non-fiction.
