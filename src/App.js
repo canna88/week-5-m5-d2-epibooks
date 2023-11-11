@@ -3,25 +3,28 @@ import "./App.css";
 //Import file history come predefinito all'inizio
 import history from "./Data/history.json";
 
+// Import di react router DOM
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 //Import componenti
 import MyNav from "./Components/MyNav.jsx";
 import MyFooter from "./Components/MyFooter.jsx";
 import Welcome from "./Components/Welcome.jsx";
 import AllTheBooks from "./Components/AllTheBooks.jsx";
-import { useState } from "react";
 import CategoryList from "./Components/CategoryList.jsx";
 import CommentArea2 from "./Components/CommentArea2.jsx";
-import { Container, Row, Col } from "react-bootstrap";
+import BookDetails from "./Components/BookDetails/Index.jsx";
+import NotFound from "./Components/NotFound.jsx";
+import Contacts from "./Components/Contacts.jsx";
 
-import selectedBookContext from "./Context/selectedBook.js";
+// Import stati, context e CSS
 import CategoryContext from "./Context/category.js";
 import FilterContext from "./Context/filter.js";
 import crudOperatorContext from "./Context/crudOperator.js";
+import selectedBookContext from "./Context/selectedBook.js";
 
-// npm install reac-router-dom
-// import { BrowserRouter } from "react-router-dom";
-
-// https://reactrouter.com/en/main/router-components/browser-router
+import { Container, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 
 function App() {
   const [filter, setFilter] = useState("");
@@ -31,47 +34,45 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter> */}
-      <selectedBookContext.Provider value={{ selectedBook, setSelectedBook }}>
-        <crudOperatorContext.Provider value={{ crudOperator, setCrudOperator }}>
-          <CategoryContext.Provider value={{ category, setCategory }}>
-            <FilterContext.Provider value={{ filter, setFilter }}>
-              {/* <Routes> */}
+      <BrowserRouter>
+        <selectedBookContext.Provider value={{ selectedBook, setSelectedBook }}>
+          <crudOperatorContext.Provider
+            value={{ crudOperator, setCrudOperator }}
+          >
+            <CategoryContext.Provider value={{ category, setCategory }}>
+              <FilterContext.Provider value={{ filter, setFilter }}>
                 <MyNav />
-                {/* <Welcome />
-                <Route path = "/" element = {<CategoryList/>} />
-                <Route path = "/" element = {<Container>
-                  <Row>
-                    <Col className="m-0" xs={8}>
-                      <AllTheBooks />
-                    </Col>
-                    <Col className="m-0" xs={4}>
-                      <CommentArea2 />
-                    </Col>
-                  </Row>
-                </Container>}/>
-                <MyFooter /> */}
-
-                <MyNav />
-                <Welcome />
-                <CategoryList />
-                <Container>
-                  <Row>
-                    <Col  className="m-0" xs={8}>
-                      <AllTheBooks />
-                    </Col>
-                    <Col className="m-0" xs={4}>
-                      <CommentArea2 />
-                    </Col>
-                  </Row>
-                </Container>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <>
+                        <Welcome />
+                        <CategoryList />
+                        <Container>
+                          <Row>
+                            <Col className="m-0" xs={12}>
+                              <AllTheBooks />
+                            </Col>
+                            {/* <Col className="m-0" xs={4}>
+                              <CommentArea2 />
+                            </Col> */}
+                          </Row>
+                        </Container>
+                      </>
+                    }
+                  />
+                  <Route path="/contacts" element={<Contacts />} />
+                  <Route path="/bookdetails/:asin" element={<BookDetails />} />
+                  <Route path="*" element={<Navigate to="/notfound" />} />
+                  <Route path="/notfound" element={<NotFound />} />
+                </Routes>
                 <MyFooter />
-              {/* </Routes> */}
-            </FilterContext.Provider>
-          </CategoryContext.Provider>
-        </crudOperatorContext.Provider>
-      </selectedBookContext.Provider>
-      {/* </BrowserRouter> */}
+              </FilterContext.Provider>
+            </CategoryContext.Provider>
+          </crudOperatorContext.Provider>
+        </selectedBookContext.Provider>
+      </BrowserRouter>
     </>
   );
 }

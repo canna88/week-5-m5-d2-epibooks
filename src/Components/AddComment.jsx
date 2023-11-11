@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
 import { bearer } from "../Bearer";
 import crudOperatorContext from "../Context/crudOperator.js";
+import RedMessage from "./RedMessage";
 
 function AddComment({ asin }) {
   const [addOpen, setAddOpen] = useState(false);
@@ -15,14 +16,19 @@ function AddComment({ asin }) {
     setAddOpen(false);
   };
 
-  useEffect (()=>{setAddOpen(false);},[asin])
+  useEffect(() => {
+    setAddOpen(false);
+  }, [asin]);
 
   const opendAdd = () => {
     setAddOpen(true);
   };
 
-
   const submitAdd = () => {
+    if (!addComment || !addRate || addRate < 1 || addRate > 5) {
+      alert("Inserisci un commento valido e un rate compreso tra 1 e 5");
+      return;
+    }
     setIsUpdating(true);
 
     const newComment = {
@@ -73,16 +79,24 @@ function AddComment({ asin }) {
                 <Form.Control
                   value={addComment}
                   onChange={(e) => setAddComment(e.target.value)}
+                  required
                 />
               </Form.Group>
+              {!addComment ? <RedMessage message="Inserisci un commento" /> : null}
+
 
               <Form.Group className="mb-3">
                 <Form.Label>Rate</Form.Label>
                 <Form.Control
+                type="number"
                   value={addRate}
                   onChange={(e) => setAddRate(e.target.value)}
+                  required
                 />
+
               </Form.Group>
+              {addRate < 1 || addRate > 5 ? <RedMessage message="Il rate deve essere compreso tra 1 e 5" /> : null}
+
 
               <Form.Group className="mb-3">
                 <Form.Label>Asin</Form.Label>
@@ -108,4 +122,3 @@ function AddComment({ asin }) {
 }
 
 export default AddComment;
-

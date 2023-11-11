@@ -21,7 +21,15 @@ function CommentList({ list }) {
       <ul>
         {list.map((element, index) => (
           <li key={index}>
-            <h6>Comment:</h6> {element.comment} <h6>Rate:</h6> {element.rate}
+            <div>
+              <h6>Comment:</h6> {element.comment} <h6>Rate:</h6> {element.rate}
+            </div>
+            {/* <div>
+              <Button variant="danger" asin={element.asin}>
+                Delete
+              </Button>
+            </div> */}
+
             <Update commentId={element._id} />
             <DeleteComment commentId={element._id} />
           </li>

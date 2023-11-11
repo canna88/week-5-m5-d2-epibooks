@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import Loading from "./Loading";
-import { bearer,getMethod} from "../Bearer";
+import { bearer, getMethod } from "../Bearer";
 import crudOperatorContext from "../Context/crudOperator.js";
-
+import RedMessage from "./RedMessage.jsx";
 
 function Update({ commentId }) {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false);
@@ -14,13 +14,20 @@ function Update({ commentId }) {
   const [newRate, setNewRate] = useState("");
   const { crudOperator, setCrudOperator } = useContext(crudOperatorContext);
 
-  useEffect (()=>{setUpdateOpen(false);},[commentId])
+  useEffect(() => {
+    setUpdateOpen(false);
+  }, [commentId]);
 
   const discardUpdate = () => {
     setUpdateOpen(false); // Nasconde il form di aggiornamento
   };
 
   const updateConfirmation = () => {
+    if (!newComment || !newRate || newRate < 1 || newRate > 5) {
+      alert("Inserisci un commento valido e un rate compreso tra 1 e 5");
+      return;
+    }
+
     setIsUpdating(true);
 
     fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`, {
@@ -43,7 +50,7 @@ function Update({ commentId }) {
         console.error("Errore nell'aggiornamento del commento", error);
       })
       .finally(() => {
-        crudOperator ? setCrudOperator(false) : setCrudOperator(true)
+        crudOperator ? setCrudOperator(false) : setCrudOperator(true);
       });
   };
 
@@ -60,13 +67,11 @@ function Update({ commentId }) {
           setNewComment(data.comment);
           setNewRate(data.rate);
           setIsLoadingUpdate(false);
-          
-          
         })
         .catch((error) => {
           setIsLoadingUpdate(false);
           console.error("Errore nel caricamento dei commenti", error);
-        })
+        });
     }
   }, [updateOpen, commentId]);
 
@@ -85,16 +90,27 @@ function Update({ commentId }) {
               <Form.Control
                 defaultValue={commentData.comment}
                 onChange={(e) => setNewComment(e.target.value)}
+                required
               />
             </Form.Group>
+
+            {!newComment ? (
+              <RedMessage message="Inserisci un commento" />
+            ) : null}
 
             <Form.Group className="mb-3">
               <Form.Label>Rate</Form.Label>
               <Form.Control
+              type="number"
                 defaultValue={commentData.rate}
                 onChange={(e) => setNewRate(e.target.value)}
+                required
               />
             </Form.Group>
+
+            {newRate < 1 || newRate > 5 ? (
+              <RedMessage message="Il rate deve essere compreso tra 1 e 5" />
+            ) : null}
 
             <Form.Group className="mb-3">
               <Form.Label>Element ID</Form.Label>

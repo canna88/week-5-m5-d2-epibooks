@@ -1,22 +1,46 @@
-D6
+# Obbligatori:
+- [DONE] **Input Rate Comment**: Accettare solo parametri da 1 a 5.
+- [DONE] **Input Rate Comment e Input Comment**: Devono essere obbligatori.
 
-- creare sezione esterna per commenti
-- click su card, viene creato un oggetto con prodotto e asin
-    - funzionamento: al click sulla card viene aggiornato un useState a livello superiore con i dati della card
-- Se non lo hai fatto, cambia il modo in cui viene salvato "selected".
-- Non deve essere piu  salavato in SingleBook, ma in Latest Release, e non deve piu contenere un booleano, ma l'asin del libro su cui si è cliccato.
- - Per farlo, implementa lo state lifting e modifica SingleBook di conseguenza
- - Passa il valore di "selected" si a SingleBook che a CommentArea
- Quando cambia il valore di "selected", CommentArea area deve eseguire una nuova fetch con il nuovo valore di selected e le recensioni nella colonna di destra devono riflettere il libro selezionato nella colonna di sinistra
- -Utilizza component DidUpdate e non dimenticart idi sfruttare le sue prop per non imbatterti in un loop infinito
- - Assicurati che l'asin del libro (nella prop selected) arrivi anche a AddComment in modo da mantenere aggiornata la sua proprietà elementId (necessaria per la richiesta POST del libro attualmente selezionato)
+# Componente BookDetails:
+- [DONE] Scaricare l'ASIN tramite useParams.
+- [DONE] Sceglierlo tra i diversi 5 file JSON presenti.
+- [DONE] Presentare tutti i dati e l'immagine in maniera chiara.
+- [] Presentare i commenti già presenti in maniera chiara.
+
+# SCSS:
+- [ ] Installare il pacchetto.
+- [ ] Per ogni componente, creare una cartella.
+- [ ] Rinominare il componente come index.js e index.module.scss.
+- [ ] Dare gli stili in index.module.scss.
+- [ ] Applicarli a index.js.
+
+# Meno Importanti:
+- [ ] Inserire un filtro per ordinare i libri per nome, categoria e prezzo.
+
+# Modifiche al Jumbotron:
+- [ ] **Modificare il Jumbotron**:
+  - [ ] Aggiungere un'immagine larga che copra tutto lo schermo.
+  - [ ] Includere una frase introduttiva accattivante.
 
 
--CREAZIONE NUOVO CONTEXT: al clic su una categoria o di una nuova card ripulisce la sezione commenti
--ADD COMMENT: dopo aver aggiunto il commento deve rifare la  fetch
--ADD COMMENT: dopo aver aggiunto il commento, deve chiudere il form
- D7
 
- https://github.com/luisanton-io/wdpt0323-routed-products
 
- 
+# Fatti (Già Completati):
+- [DONE] **Creare Sezione Esterna per Commenti**
+- [DONE] **Click su Card**: Viene creato un oggetto con prodotto e ASIN.
+  - Funzionamento: Al click sulla card, viene aggiornato uno useState a livello superiore con i dati della card.
+- [DONE] **Cambiare il Modo in cui Viene Salvato "Selected"**
+  - Non deve essere più salvato in SingleBook, ma in Latest Release.
+  - Non deve più contenere un booleano, ma l'ASIN del libro su cui si è cliccato.
+- [DONE] **Implementare lo State Lifting e Modificare SingleBook di Conseguenza**
+- [DONE] **Passare il Valore di "Selected" a SingleBook e a CommentArea**
+  - Quando cambia il valore di "selected", CommentArea deve eseguire una nuova fetch con il nuovo valore di selected.
+  - Le recensioni nella colonna di destra devono riflettere il libro selezionato nella colonna di sinistra.
+- [DONE] **Utilizzare componentDidUpdate** e sfruttare le sue props per evitare un loop infinito.
+- [DONE] **Assicurarsi che l'ASIN del Libro (nella prop selected) Arrivi Anche a AddComment**
+  - Mantenere aggiornata la proprietà elementId (necessaria per la richiesta POST del libro attualmente selezionato).
+- [DONE] **Creazione Nuovo Context**
+  - Al clic su una categoria o su una nuova card, ripulire la sezione commenti.
+- [DONE] **Add Comment**: Dopo aver aggiunto il commento, rifare la fetch.
+- [DONE] **Add Comment**: Dopo aver aggiunto il commento, chiudere il form.
