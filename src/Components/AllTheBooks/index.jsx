@@ -1,14 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import {  Row, Col } from "react-bootstrap";
-import SingleBook from "./SingleBook";
-import FilterContext from "../Context/filter.js";
-import CategoryContext from "../Context/category.js";
-import selectedBookContext from "../Context/selectedBook.js";
-import history from "../Data/history.json";
-import fantasy from "../Data/fantasy.json";
-import horror from "../Data/horror.json";
-import romance from "../Data/romance.json";
-import scifi from "../Data/scifi.json";
+import { Row, Col } from "react-bootstrap";
+import SingleBook from "../SingleBook/index.jsx";
+import FilterContext from "../../Context/filter.js";
+import CategoryContext from "../../Context/category.js";
+import selectedBookContext from "../../Context/selectedBook.js";
+import styles from "./index.module.scss";
 
 function AllTheBooks() {
   const [filteredTitles, setFilteredTitles] = useState([]);
@@ -28,21 +24,31 @@ function AllTheBooks() {
 
   return (
     <>
-          <Row className="mt-5">
+      <Row className="mt-5">
         <Col>
           <h3>Books:</h3>
         </Col>
       </Row>
-      <Row className="row-gap-1">
+      <Row className={`row-gap-1 ${styles.containerMinHeight}`}>
+        {filteredTitles.length === 0 && (
+          <Col xs={12} className="text-center mt-3">
+            <h2>La tua ricerca non produce risultati</h2>
+          </Col>
+        )}
         {filteredTitles.map((book) => (
-          <Col key={book.asin} xs={12} md={6} lg={3} className="p-3 d-flex align-items-stretch flex-wrap">
+          <Col
+            key={book.asin}
+            xs={12}
+            md={6}
+            lg={4}
+            className="p-3 d-flex align-items-stretch flex-wrap"
+          >
             <SingleBook book={book} />
           </Col>
         ))}
       </Row>
     </>
   );
-  
 }
 
 export default AllTheBooks;

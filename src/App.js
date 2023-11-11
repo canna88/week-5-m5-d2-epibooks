@@ -7,10 +7,10 @@ import history from "./Data/history.json";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 //Import componenti
-import MyNav from "./Components/MyNav.jsx";
-import MyFooter from "./Components/MyFooter.jsx";
+import MyNav from "./Components/MyNav/index.jsx";
+import MyFooter from "./Components/MyFooter/index.jsx";
 import Welcome from "./Components/Welcome.jsx";
-import AllTheBooks from "./Components/AllTheBooks.jsx";
+import AllTheBooks from "./Components/AllTheBooks/index.jsx";
 import CategoryList from "./Components/CategoryList.jsx";
 import CommentArea2 from "./Components/CommentArea2.jsx";
 import BookDetails from "./Components/BookDetails/Index.jsx";

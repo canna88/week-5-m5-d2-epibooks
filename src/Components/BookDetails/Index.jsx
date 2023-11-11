@@ -13,10 +13,10 @@ import fantasy from "../../Data/fantasy.json";
 import horror from "../../Data/horror.json";
 import romance from "../../Data/romance.json";
 import scifi from "../../Data/scifi.json";
-import BookDetailsData from "../BookDetailsData/BookDetailsData.jsx";
+import BookDetailsData from "../BookDetailsData/index.jsx";
+import styles from "./index.module.scss";
 
 function BookDetails() {
-  const { selectedBook } = useContext(selectedBookContext);
   const { crudOperator } = useContext(crudOperatorContext);
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
@@ -30,12 +30,12 @@ function BookDetails() {
     .filter((book) => book)[0];
 
   useEffect(() => {
-    if (selectedBook) {
+    if (asin) {
       setLoading(true);
       setNoComments(false);
 
       fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${selectedBook}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${asin}`,
         getMethod
       )
         .then((r) => r.json())
@@ -51,11 +51,11 @@ function BookDetails() {
           setLoading(false);
         });
     }
-  }, [selectedBook, crudOperator]);
+  }, [asin, crudOperator]);
 
   return (
     <>
-      <Container>
+      <Container className={styles.bookDetailsContainer}>
         <BookDetailsData
           img={selectedBookData.img}
           title={selectedBookData.title}
@@ -63,13 +63,13 @@ function BookDetails() {
           price={selectedBookData.price}
         />
       </Container>
-      <Container>
+      <Container className={styles.bookDetailsContainer}>
         <Row>
           <Col xs={12}>
             <h3 className="my-1">Comments:</h3>
-            {selectedBook && (
+            {asin && (
               <div>
-                <AddComment asin={selectedBook} />
+                <AddComment asin={asin} />
                 {loading && <Loading />}
                 {noComments && (
                   <div>
@@ -78,7 +78,7 @@ function BookDetails() {
                 )}
                 {comments.length > 0 && (
                   <div>
-                    <Table striped bordered hover>
+                    <Table striped bordered hover className={styles.commentsTable}>
                       <thead>
                         <tr>
                           <th style={{ width: "60%" }}>Comment</th>

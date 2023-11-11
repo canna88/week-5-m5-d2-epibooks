@@ -11,11 +11,11 @@
 - [DONE] Presentare il footer in maniera chiara.
 
 # SCSS:
-- [ ] Installare il pacchetto.
-- [ ] Per ogni componente, creare una cartella.
-- [ ] Rinominare il componente come index.js e index.module.scss.
-- [ ] Dare gli stili in index.module.scss.
-- [ ] Applicarli a index.js.
+- [DONE] Installare il pacchetto.
+- [DONE] Per ogni componente, creare una cartella.
+- [DONE] Rinominare il componente come index.js e index.module.scss.
+- [DONE] Dare gli stili in index.module.scss.
+- [DONE] Applicarli a index.js.
 
 # Meno Importanti:
 - [ ] Inserire un filtro per ordinare i libri per nome, categoria e prezzo.

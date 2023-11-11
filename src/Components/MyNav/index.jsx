@@ -2,22 +2,15 @@ import { Form, Col, Row } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useContext } from "react";
-import FilterContext from "../Context/filter";
+import FilterContext from "../../Context/filter";
 import { Link } from "react-router-dom";
+import styles from "./index.module.scss"
 
 function MyNav() {
   const { filter, setFilter } = useContext(FilterContext);
 
-  const myNavStyle = {
-    position: "fixed",
-    top: 0,
-    width: "100%",
-    zIndex: 1000, // Set a higher z-index value
-
-  };
-
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4" style={myNavStyle}> {/* Fix the typo here */}
+    <Navbar bg="dark" variant="dark" expand="lg" className={`mb-4 ${styles.myNavStyle}`}> {/* Fix the typo here */}
       <Navbar.Brand href="#home">EpiBooks</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

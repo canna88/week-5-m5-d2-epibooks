@@ -1,0 +1,32 @@
+.bookCard {
+  cursor: pointer;
+
+  &.selected {
+    border: 3px solid red;
+  }
+
+  &.notSelected {
+    border: 2px solid black;
+  }
+
+  .cardImgTop {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cardTitle {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  .bookCategory,
+  .bookPrice {
+    margin-bottom: 1rem;
+  }
+
+  .bookDetailsButton {
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0%;
+  }
+}
