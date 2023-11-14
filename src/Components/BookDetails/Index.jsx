@@ -17,6 +17,7 @@ import BookDetailsData from "../BookDetailsData/index.jsx";
 import styles from "./index.module.scss";
 
 function BookDetails() {
+  const { selectedBook, setSelectedBook } = useContext(selectedBookContext);
   const { crudOperator } = useContext(crudOperatorContext);
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState([]);
@@ -25,17 +26,20 @@ function BookDetails() {
   const bookList = [history, fantasy, horror, romance, scifi];
   const { asin } = useParams();
 
+
   const getBookData = bookList
     .map((categoryBooks) => categoryBooks.find((book) => book.asin === asin))
     .filter((book) => book)[0];
 
   useEffect(() => {
-    if (asin) {
+    setSelectedBook(asin)
+
+    if (selectedBook) {
       setLoading(true);
       setNoComments(false);
 
       fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${asin}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${selectedBook}`,
         getMethod
       )
         .then((r) => r.json())
@@ -51,7 +55,7 @@ function BookDetails() {
           setLoading(false);
         });
     }
-  }, [asin, crudOperator]);
+  }, [selectedBook, crudOperator]);
 
   return (
     <>
@@ -67,9 +71,9 @@ function BookDetails() {
         <Row>
           <Col xs={12}>
             <h3 className="my-1">Comments:</h3>
-            {asin && (
+            {selectedBook && (
               <div>
-                <AddComment asin={asin} />
+                <AddComment asin={selectedBook} />
                 {loading && <Loading />}
                 {noComments && (
                   <div>

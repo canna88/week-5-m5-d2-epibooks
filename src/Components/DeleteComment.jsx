@@ -24,6 +24,7 @@ function DeleteComment({ commentId }) {
       })
       .finally(() => {
         crudOperator ? setCrudOperator(false) : setCrudOperator(true)
+        setIsDeleting(false)
       });
   };
 
