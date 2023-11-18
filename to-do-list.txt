@@ -46,4 +46,4 @@
 - [DONE] **Creazione Nuovo Context**
   - Al clic su una categoria o su una nuova card, ripulire la sezione commenti.
 - [DONE] **Add Comment**: Dopo aver aggiunto il commento, rifare la fetch.
-- [DONE] **Add Comment**: Dopo aver aggiunto il commento, chiudere il form.
+- [DONE] **Add Comment**: Dopo aver aggiunto il commento, chiudere il form
